@@ -1,0 +1,58 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+exclude = '''
+^/(
+    | \.git
+    | \.venv
+    | build
+    | dist
+)/
+'''
+experimental-string-processing = true
+include = '\.pyi?$'
+include-trailing-comma = false
+line-length = 79
+target-version = ['py310']
+
+[tool.isort]
+force_single_line = "true"
+profile = "black"
+src_paths = ["leonify"]
+
+[tool.poetry]
+authors = [
+    "A. J. Wray <ajw@ajw.sl>",
+]
+classifiers = [
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.10.1',
+    'Programming Language :: Python :: 3 :: Only',
+]
+description = ""
+homepage = "https://github.com/timzaz/leonify"
+keywords = [
+]
+license = "private"
+name = "leonify"
+readme = "README.md"
+repository = "https://github.com/timzaz/leonify.git"
+version = "0.1.1"
+
+[tool.poetry.dependencies]
+python = ">=3.10.1,<4.0"
+fastapi = "^0.70.0"
+gunicorn = "^20.1.0"
+uvicorn = "^0.17.0"
+selenium = "^4.1.0"
+
+[tool.poetry.dev-dependencies]
+autoflake = "^1.4"
+flake8 = "^3.8.4"
+ipython = "^7.19.0"
+isort = "5.8.0"
+pytest = "^6.2.2"
+black = "^21.12b0"
