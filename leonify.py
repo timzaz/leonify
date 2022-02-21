@@ -68,7 +68,7 @@ def get_value(driver: WebDriver, id: str) -> str:
             .strip()
         )
     except TimeoutException as exc:
-        logger.error(f"Unable to reach BSL server: {exc}")
+        logger.error(f"BSL server could be temporarily down: {exc}")
         raise HTTPException(500, "BSL server temporarily down.")
 
 
@@ -84,7 +84,7 @@ application = FastAPI(
 async def on_startup():
     global _start
     get_driver()
-    processing: str = f"Processed in: {time.time() - _start}"
+    processing: str = f"Started in: {time.time() - _start}"
     logger.info(processing)
 
 
