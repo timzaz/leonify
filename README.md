@@ -1,7 +1,6 @@
 # Leonify
 
-This application's index endpoint returns the leones equivalent of the passed
-EUR, GBP or USD value.
+Get the Bank of Sierra Leone approved leones equivalent for EUR, GBP or USD figures.
 
 To get started, ensure you have poetry install and run,
 ```bash
