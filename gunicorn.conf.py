@@ -10,7 +10,7 @@ import os
 workers_per_core_str = os.getenv("GUNICORN_WORKERS_PER_CORE", "1")
 web_concurrency_str = os.getenv("GUNICORN_WEB_CONCURRENCY", None)
 host = os.getenv("GUNICORN_HOST", "0.0.0.0")
-port = os.getenv("GUNICORN_PORT", "80")
+port = os.getenv("GUNICORN_PORT", "8000")
 bind_env = os.getenv("GUNICORN_BIND", None)
 use_loglevel = os.getenv("GUNICORN_LOG_LEVEL", "info")
 
@@ -30,11 +30,13 @@ else:
     web_concurrency = int(default_web_concurrency)
 
 #: Gunicorn config variables
-loglevel = use_loglevel
-workers = web_concurrency
 bind = use_bind
-keepalive = 120
 errorlog = "-"
+keepalive = 120
+loglevel = use_loglevel
+timeout = 0
+worker_temp_dir = "/dev/shm"
+workers = 1
 
 #: For debugging and testing
 log_data = {
@@ -42,7 +44,9 @@ log_data = {
     "host": host,
     "loglevel": loglevel,
     "port": port,
-    "workers": workers,
+    "timeout": 0,
+    "worker_temp_dir": "/dev/shm",
+    "workers": 1,
     #: Additional, non-gunicorn variables
-    "workers_per_core": workers_per_core,
+    # "workers_per_core": 1,
 }
