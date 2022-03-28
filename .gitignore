@@ -31,7 +31,6 @@ temp
 migrations
 
 # *.json
-*.lock
 *.pid
 *.seed
 *.pid.lock
