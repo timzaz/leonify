@@ -165,4 +165,5 @@ async def index(
         usd = typing.cast(float, usd)
         leones = usd / (1 / float(get_value(driver, usd_id).replace(",", "")))
 
-    return Leones(leones=leones, time=time.time() - start)
+    duration = time.time() - start
+    return Leones(leones=leones, time=duration)
