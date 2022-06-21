@@ -38,4 +38,4 @@ COPY leonify.py /var/www/leonify.py
 
 EXPOSE 8000
 
-CMD ["poetry", "run", "gunicorn", "leonify:application", "-k", "uvicorn.workers.UvicornWorker", "-c", "gunicorn.conf.py"]
+CMD ["poetry", "run", "gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-c", "gunicorn.conf.py", "leonify:application"]

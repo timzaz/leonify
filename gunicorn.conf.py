@@ -35,7 +35,7 @@ errorlog = "-"
 keepalive = 120
 loglevel = use_loglevel
 timeout = 0
-worker_temp_dir = "/dev/shm"
+worker_tmp_dir = "/dev/shm"
 workers = 1
 
 #: For debugging and testing
