@@ -19,9 +19,9 @@ from starlette.responses import JSONResponse
 
 logger = logging.getLogger(__name__)
 
-eur_id: str = "wb_Text96"
-gbp_id: str = "wb_Text66"
-usd_id: str = "wb_Text99"
+eur_id: str = "wb_Text51"
+gbp_id: str = "wb_Text8"
+usd_id: str = "wb_Text78"
 _driver: WebDriver | None = None
 _start = time.time()
 
@@ -63,9 +63,16 @@ def get_value(driver: WebDriver, id: str) -> str:
             EC.presence_of_element_located((By.ID, id))
         )
         return (
-            element.find_element(By.TAG_NAME, "strong")
-            .text.split(":")[1]
+            "".join(
+                [
+                    x
+                    for x in element.find_element(
+                        By.TAG_NAME, "strong"
+                    ).text.split("SLE")[1:]
+                ]
+            )
             .strip()
+            .replace(",", "")
         )
     except TimeoutException as exc:
         logger.error(f"BSL server could be temporarily down: {exc}")
