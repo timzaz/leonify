@@ -14,7 +14,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait
 from starlette.responses import JSONResponse
 
 logger = logging.getLogger(__name__)
@@ -165,12 +165,12 @@ async def index(
     leones: float | None = None
     driver: WebDriver = get_driver()
     if eur is not None:
-        leones = eur / (1 / float(get_value(driver, eur_id).replace(",", "")))
+        leones = eur * float(get_value(driver, eur_id).replace(",", ""))
     elif gbp is not None:
-        leones = gbp / (1 / float(get_value(driver, gbp_id).replace(",", "")))
+        leones = gbp * float(get_value(driver, gbp_id).replace(",", ""))
     else:
         usd = typing.cast(float, usd)
-        leones = usd / (1 / float(get_value(driver, usd_id).replace(",", "")))
+        leones = usd * float(get_value(driver, usd_id).replace(",", ""))
 
     duration = time.time() - start
     return Leones(leones=leones, time=duration)
